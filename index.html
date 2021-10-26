@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
+  <style>
+    #target,
+    #scroll-area {
+      height: 500px;
+      width: 50%;
+      margin: 0 auto;
+      overflow-y: scroll;
+      border: 1px solid#000;
+    }
+
+    div section {
+      height: 600px;
+    }
+  </style>
   <h1>サンプル</h1>
   <p>テストブランチ追加</p>
+  <div id="target">
+    <section>section</section>
+    <section>section</section>
+    <section>section</section>
+  </div>
+  <button onclick="countScroll();">スクロール量確認</button>
+  <div>スクロール量：<span id="output"></span></div>
+  <p id="h"></p>
+
+
+
+  <div id="scroll-area">
+    <section>section</section>
+    <section>section</section>
+    <section>section</section>
+  </div>
 </body>
+<script>
+  function countScroll() {
+    var target = document.getElementById('target');
+    var bottom = target.offsetHeight;
+    var y = target.scrollTop;
+    document.getElementById('output').innerHTML = y;
+    document.getElementById('h').innerHTML = bottom;
+  }
+
+  const element = document.getElementById('scroll-area');
+  const clientHeight = element.clientHeight;
+  const scrollHeight = element.scrollHeight;
+  element.onscroll = function () {
+    if (scrollHeight - (clientHeight + this.scrollTop) == 0) {
+      alert('一番下です！');
+    }
+  };
+</script>
+
 </html>
